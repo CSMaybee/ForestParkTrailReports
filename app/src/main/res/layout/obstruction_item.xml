@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    android:layout_marginTop="10dp"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Obstruction Type"
+            android:textStyle="bold"
+            android:layout_marginTop="7dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/txtDaysFromReport"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtType"
+            android:layout_marginTop="7dp"
+            android:text="Reported: "
+            android:layout_marginStart="5dp"/>
+        <!--
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@id/txtLastHiked"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_launcher_background" />
+        -->
+        <TextView
+            android:id="@+id/txtObstructionItemDescription"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtDaysFromReport"
+            android:layout_marginTop="7dp"
+            android:text="Description: "
+            android:layout_marginStart="5dp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
