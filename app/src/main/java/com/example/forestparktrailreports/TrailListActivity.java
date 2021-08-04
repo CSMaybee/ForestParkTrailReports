@@ -1,7 +1,6 @@
 package com.example.forestparktrailreports;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,18 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-
-import io.jenetics.jpx.GPX;
-import io.jenetics.jpx.WayPoint;
 
 public class TrailListActivity extends AppCompatActivity {
 
@@ -103,16 +95,17 @@ public class TrailListActivity extends AppCompatActivity {
             case R.id.menu_trails:
                 trailsRecView.setVisibility(View.VISIBLE);
                 obstructionsRecView.setVisibility(View.GONE);
+                setTitle("List of Trails");
                 return true;
             case R.id.menu_obstructions:
                 trailsRecView.setVisibility(View.GONE);
                 obstructionsRecView.setVisibility(View.VISIBLE);
+                setTitle("List of Obstructions");
                 return true;
             case R.id.menu_refresh:
                 Intent intent = new Intent(TrailListActivity.this, TrailListActivity.class);
                 startActivity(intent);
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
     }

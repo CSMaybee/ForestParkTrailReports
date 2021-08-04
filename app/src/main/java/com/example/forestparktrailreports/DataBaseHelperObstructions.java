@@ -17,6 +17,12 @@ import java.util.Locale;
 
 public class DataBaseHelperObstructions extends SQLiteOpenHelper {
 
+    /* My first time using SQLite, it would be nice to keep a local database in place after
+    implementing a server hosted database. A local database could keep the app working while
+    users are not in cellular range, like on a hiking trail. The server hosted one would sync based
+    on the users local database.
+     */
+
     public static final String OBSTRUCTION_TABLE = "OBSTRUCTION_TABLE";
     public static final String COLUMN_TYPE = "TYPE";
     public static final String COLUMN_DESCRIPTION = "DESCRIPTION";

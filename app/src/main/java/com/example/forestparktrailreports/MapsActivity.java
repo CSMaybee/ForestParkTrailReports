@@ -1,5 +1,5 @@
 package com.example.forestparktrailreports;
-//testing
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -56,7 +56,6 @@ import io.jenetics.jpx.WayPoint;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private ActivityMapsBinding binding;
     private final int ACCESS_LOCATION_REQUEST_CODE = 10001;
     private final int zoom = 12;
 
@@ -81,15 +80,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+        com.example.forestparktrailreports.databinding.ActivityMapsBinding binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
-
+        //Descriptions of these methods are listed just above their declaration
         addButtonListeners();
         prepareSpinner();
     }
@@ -107,9 +107,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        /**
-         * Descriptions of these methods are listed just above their declaration
-         */
+
+         //Descriptions of these methods are listed just above their declaration
         requestPermission();
 
         createTrailsList();
@@ -158,25 +157,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } catch (IOException e) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
-        int thiscolor;
+        int hexColorCode;
         switch (color) {
             case "green":
-                thiscolor = 0xFF00FF00;
+                hexColorCode = 0xFF00FF00;
                 break;
             case "red":
-                thiscolor = 0xFFFF0000;
+                hexColorCode = 0xFFFF0000;
                 break;
             case "yellow":
-                thiscolor = 0xFFFFFF00;
+                hexColorCode = 0xFFFFFF00;
                 break;
             case "blue":
-                thiscolor = 0xFF0000FF;
+                hexColorCode = 0xFF0000FF;
                 break;
             default:
-                thiscolor = 0xFF000000;
+                hexColorCode = 0xFF000000;
         }
         mMap.addPolyline(new PolylineOptions()
-                .addAll(coords).width(10).color(thiscolor));
+                .addAll(coords).width(10).color(hexColorCode));
         mMap.addMarker(new MarkerOptions().position(coords.get(0)).title(trailName).icon(getMarkerIcon(color)));
         if (setCamera) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords.get(0), zoom));
@@ -200,7 +199,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     "Error" is returned if no GPX file exists
      */
     public String readGPXName(String fileName) {
-        List<WayPoint> listOfWayPoints;
         String trailName = "Error";
         try {
             AssetManager assetManager = getAssets();
@@ -217,7 +215,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     /*
-    Clears all the polylines and marksers from the map
+    Clears all the polylines and markers from the map
     then redraws all the trails and markers
      */
     public void redrawMap(int zoom) throws ParseException {
@@ -318,10 +316,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     public void submitObstruction() throws ParseException {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
+            // Consider calling
+            // ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            // public void onRequestPermissionsResult(int requestCode, String[] permissions,
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
@@ -388,6 +386,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         spinnerObstructionTypes.add("Rock Slide");
         spinnerObstructionTypes.add("Bolder");
         spinnerObstructionTypes.add("Other");
+        // Add more types here
 
         ArrayAdapter<String> obstructionAdapter = new ArrayAdapter<>(
                 this,
