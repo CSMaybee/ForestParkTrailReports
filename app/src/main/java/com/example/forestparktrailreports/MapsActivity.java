@@ -175,7 +175,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 hexColorCode = 0xFF000000;
         }
         mMap.addPolyline(new PolylineOptions()
-                .addAll(coords).width(10).color(hexColorCode));
+                .addAll(coords).width(10).color(hexColorCode).zIndex((color == "red") ? 2 : (color == "yellow") ? 1 : 0));
         mMap.addMarker(new MarkerOptions().position(coords.get(0)).title(trailName).icon(getMarkerIcon(color)));
         if (setCamera) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords.get(0), zoom));
